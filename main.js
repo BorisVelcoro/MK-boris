@@ -1,115 +1,148 @@
-let scorpion = {
-  name: 'SCORPION',
-  hp: 100,
-  img: 'https://www.fightersgeneration.com/characters3/scorpion-mk3-fix2.gif',
-  weapon: ['Hook', 'Fists', 'BFG'],
-  attack: function() {
-    console.log(`${scorpion.name} Fight...`);
-  }
-}
+let player1 = {
+  player: 1,
+  name: "SCORPION",
+  hp: 80,
+  img: "https://www.fightersgeneration.com/characters3/scorpion-mk3-fix2.gif",
+  weapon: ["Hook", "Fists", "BFG"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
 
-let subzero = {
-  name: 'SUBZERO',
+let player2 = {
+  player: 2,
+  name: "SUBZERO",
   hp: 100,
-  img: 'https://www.fightersgeneration.com/characters3/subzero-stance.gif',
-  weapon: ['Ice', 'Fists', 'AK47'],
-  attack: function() {
-    console.log(`${subzero.name} Fight...`);
-  }
-}
+  img: "https://www.fightersgeneration.com/characters3/subzero-stance.gif",
+  weapon: ["Ice", "Fists", "AK47"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
 
 let necoarc = {
-  name: 'NECO ARC',
+  player: 1,
+  name: "NECO ARC",
   hp: 100,
-  img: 'https://static.wikia.nocookie.net/mugen/images/6/67/Shimori-Neco_Arc-idle.gif',
-  weapon: ['Ice', 'Fists', 'AK47'],
-  attack: function() {
-    console.log(`${subzero.name} Fight...`);
-  }
-}
+  img: "https://static.wikia.nocookie.net/mugen/images/6/67/Shimori-Neco_Arc-idle.gif",
+  weapon: ["Ice", "Fists", "AK47"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
 
 let sans = {
-  name: 'SANS',
+  player: 2,
+  name: "SANS",
   hp: 100,
-  img: 'https://static.wikia.nocookie.net/mugen/images/6/6f/SuminSansIdle.gif',
-  weapon: ['Ice', 'Fists', 'AK47'],
-  attack: function() {
-    console.log(`${subzero.name} Fight...`);
-  }
-}
+  img: "https://static.wikia.nocookie.net/mugen/images/6/6f/SuminSansIdle.gif",
+  weapon: ["Ice", "Fists", "AK47"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
 
 let sonic = {
-  name: 'SONIC',
+  player: 1,
+  name: "SONIC",
   hp: 100,
-  img: 'https://static.wikia.nocookie.net/mugen/images/c/cb/SeanSonicIdle.gif',
-  weapon: ['Ice', 'Fists', 'AK47'],
-  attack: function() {
-    console.log(`${subzero.name} Fight...`);
-  }
-}
+  img: "https://static.wikia.nocookie.net/mugen/images/c/cb/SeanSonicIdle.gif",
+  weapon: ["Ice", "Fists", "AK47"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
 
 let batman = {
-  name: 'BATMAN',
+  player: 2,
+  name: "BATMAN",
   hp: 100,
-  img: 'https://static.wikia.nocookie.net/mugen/images/e/e3/Char_batman.gif',
-  weapon: ['Ice', 'Fists', 'AK47'],
-  attack: function() {
-    console.log(`${subzero.name} Fight...`);
-  }
-}
+  img: "https://static.wikia.nocookie.net/mugen/images/e/e3/Char_batman.gif",
+  weapon: ["Ice", "Fists", "AK47"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
 
 let hatsunemiku = {
-  name: 'HATSUNE MIKU',
+  player: 1,
+  name: "HATSUNE MIKU",
   hp: 100,
-  img: 'https://static.wikia.nocookie.net/mugen/images/e/ea/Miku_hatsune.gif',
-  weapon: ['Ice', 'Fists', 'AK47'],
-  attack: function() {
-    console.log(`${subzero.name} Fight...`);
-  }
-}
+  img: "https://static.wikia.nocookie.net/mugen/images/e/ea/Miku_hatsune.gif",
+  weapon: ["Ice", "Fists", "AK47"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
 
 let raphael = {
-  name: 'RAPHAEL',
+  player: 2,
+  name: "RAPHAEL",
   hp: 100,
-  img: 'https://i882.photobucket.com/albums/ac24/hammerman398/PiouRaphaelIdle_zpskxj1sugz.gif',
-  weapon: ['Ice', 'Fists', 'AK47'],
-  attack: function() {
-    console.log(`${subzero.name} Fight...`);
+  img: "https://i882.photobucket.com/albums/ac24/hammerman398/PiouRaphaelIdle_zpskxj1sugz.gif",
+  weapon: ["Ice", "Fists", "AK47"],
+  attack: function () {
+    console.log(`${this.name} Fight...`);
+  },
+};
+
+const $arenas = document.querySelector(".arenas");
+const $randomButton = document.querySelector(".button");
+
+function createElement(tag, className) {
+  const $tag = document.createElement(tag);
+  if (className) {
+    $tag.classList.add(className);
   }
+
+  return $tag;
 }
 
-const $root = document.querySelector('.root');
-const $arenas = document.querySelector('.arenas');
+let createPlayer = function (character) {
+  const $player = createElement("div", "player" + character.player);
+  const $progressbar = createElement("div", "progressbar");
+  const $character = createElement("div", "character");
+  const $life = createElement("div", "life");
+  const $name = createElement("div", "name");
+  const $img = createElement("img");
 
-
-let createPlayer = function(whichPlayer, character) {
-  const $player = document.createElement('div');
-  $player.classList.add(whichPlayer);
-  
-  const $progressbar = document.createElement('div');
-  $progressbar.classList.add('progressbar');
-
-  const $character = document.createElement('div');
-  $character.classList.add('character');
-
-  const $life = document.createElement('div');
-  $life.classList.add('life');
-  $life.style.width = `${character.hp}%`;
-
-  const $name = document.createElement('div');
-  $name.classList.add('name');
   $name.innerText = character.name;
-
-  const $img = document.createElement('img');
+  $life.style.width = `${character.hp}%`;
   $img.src = character.img;
-  
-  $arenas.appendChild($player);
+
   $player.appendChild($progressbar);
   $player.appendChild($character);
   $progressbar.appendChild($life);
   $progressbar.appendChild($name);
   $character.appendChild($img);
+
+  return $player;
+};
+
+function changeHP(player) {
+  const $playerLife = document.querySelector(
+    ".player" + player.player + " .life"
+  );
+  player.hp -= 20;
+  $playerLife.style.width = player.hp + "%";
+
+  if (player.hp <= 0) {
+    $arenas.appendChild(losePlayer(player.name));
+  }
 }
 
-createPlayer('player1', subzero);
-createPlayer('player2', scorpion);
+$randomButton.addEventListener("click", function () {
+  console.log("test");
+  changeHP(player1);
+  changeHP(player2);
+});
+
+function losePlayer(name) {
+  const $loseTitle = createElement("div", "loseTitle");
+  $loseTitle.innerText = name + " lose";
+
+  return $loseTitle;
+}
+
+$arenas.appendChild(createPlayer(player1));
+$arenas.appendChild(createPlayer(player2));
